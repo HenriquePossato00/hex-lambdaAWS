@@ -4,6 +4,7 @@ const CreateProduct = require("./src/application/useCases/CreateProduct");
 const GetAllProduct = require("./src/application/useCases/GetAllProduct");
 const GetProductById = require("./src/application/useCases/GetProductById");
 const DeleteProduct = require("./src/application/useCases/DeleteProduct");
+const UpdateProduct = require("./src/application/useCases/UpdateProduct");
 
 const ProductController = require("./src/adapters/controllers/ProductController");
 
@@ -13,26 +14,24 @@ const useCases = {
     create: new CreateProduct(repository),
     get: new GetAllProduct(repository),
     getById: new GetProductById(repository),
-    delete: new DeleteProduct(repository)
+    delete: new DeleteProduct(repository),
+    update: new UpdateProduct(repository)
 }
 
 const controller = new ProductController(useCases);
 
 exports.handler = async (event) => {
     console.log(JSON.stringify(event, null, 2));
-    console.log("event.requestContext.http.method === " + event.requestContext.http.method); // correto
-    console.log("rawPath === " + event.rawPath); // correto
 
     const method = event.requestContext.http.method;
-    const [ , , path, params] = event.rawPath.split("/");
-    console.log("path === " + path)
+    const [, , path, params] = event.rawPath.split("/");
 
     if (method === "GET" && path === "products") {
-        return await controller.getAll();
-    } 
-
-    if (method === "GET" && path === "products" && params) {
-        return await controller.getById();
+        if (params) {
+            return await controller.getById(params);
+        } else {
+            return await controller.getAll();
+        }
     }
 
     if (method === "POST" && path === "products") {

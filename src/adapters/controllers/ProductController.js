@@ -34,7 +34,7 @@ class ProductController {
 
     async update(event) {
         const body = JSON.parse(event.body);
-        const result = await this.useCases.update.execute(body);
+        const result = await this.productUsecase.update.execute(body);
 
         return {
             statusCode: 200,

@@ -36,7 +36,11 @@ class DynamoProductRepository {
     async update(product) {
         await dynamo.put({
             TableName: this.tableName,
-            Item: product,
+            Item: {
+                id: product.id,
+                name: product.name,
+                ...product
+            },
         }).promise();
 
         return product;
