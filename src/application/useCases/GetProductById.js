@@ -3,8 +3,8 @@ class GetAllProduct {
     this.productRepository = productRepository;
   }
 
-  async execute() {
-    return await this.productRepository.getAll();
+  async execute(id) {
+    return await this.productRepository.getById(id);
   }
 }
 

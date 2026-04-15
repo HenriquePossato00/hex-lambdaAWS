@@ -16,15 +16,14 @@ class ProductController {
     async getAll() {
         const result = await this.productUsecase.get.execute();
 
-        return { 
-            statusCode: 200, 
-            body: JSON.stringify(result) 
+        return {
+            statusCode: 200,
+            body: JSON.stringify(result)
         };
     }
 
-    async update(event) {
-        const body = JSON.parse(event.body);
-        const result = await this.productUsecase.update(body);
+    async getById(id) {
+        const result = await this.productUsecase.getById.execute(id);
 
         return {
             statusCode: 200,
@@ -32,8 +31,24 @@ class ProductController {
         };
     }
 
-    async delete(event) {
 
+    async update(event) {
+        const body = JSON.parse(event.body);
+        const result = await this.useCases.update.execute(body);
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify(result)
+        };
+    }
+
+    async delete(id) {
+        await this.productUsecase.delete.execute(id);
+
+        return {
+            statusCode: 200,
+            body: "successfully deleted"
+        };
     }
 }
 

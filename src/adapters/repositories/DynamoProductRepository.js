@@ -34,7 +34,7 @@ class DynamoProductRepository {
     }
 
     async update(product) {
-        await dynamo.puy({
+        await dynamo.put({
             TableName: this.tableName,
             Item: product,
         }).promise();

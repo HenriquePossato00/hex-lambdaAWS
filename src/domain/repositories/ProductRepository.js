@@ -1,6 +1,6 @@
 class ProductRepository {
     async create(product) {}
-    async getAll(id) {}
+    async getAll() {}
     async getById(id) {}
     async update(product) {}
     async delete(id) {}
