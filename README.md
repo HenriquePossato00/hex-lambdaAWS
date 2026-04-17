@@ -4,7 +4,7 @@ A study project implementing **Hexagonal Architecture** (Ports and Adapters patt
 
 ## Project Overview
 
-This is an educational project designed to demonstrate clean architecture principles using:
+This is an educational project designed to demonstrate hexagonal architecture principles using:
 - **Hexagonal Architecture** for decoupled and testable code
 - **AWS Lambda** for serverless computing
 - **DynamoDB** for NoSQL data storage

@@ -12,7 +12,9 @@ class CreateProduct {
     const product = new Product({
       id: uuidv4(),
       name: data.name,
-      quantity: data.quantity || 0,
+      minQuantity: data.minQuantity || 0,
+      currentQuantity: data.currentQuantity || 0,
+      productSector: data.productSector,
       price: data.price || 0,
     });
 

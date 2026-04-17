@@ -17,7 +17,9 @@ class UpdateProduct {
     const updatedProduct = {
       ...existingProduct,
       name: data.name ?? existingProduct.name,
-      quantity: data.quantity ?? existingProduct.quantity,
+      minQuantity: data.minQuantity ?? existingProduct.minQuantity,
+      currentQuantity: data.currentQuantity ?? existingProduct.currentQuantity,
+      productSector: data.productSector ?? existingProduct.productSector,
       price: data.price ?? existingProduct.price,
     };
 
